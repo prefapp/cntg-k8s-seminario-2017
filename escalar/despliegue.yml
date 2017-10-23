@@ -18,13 +18,11 @@ spec:
     spec:
       containers:
       - name: escalar
-        image: frmadem/catro-eixos-k8s-ej1:v3
+        image: frmadem/catro-eixos-k8s-ej1:v1
         imagePullPolicy: Always
         env:
         - name: PUERTO_APP
           value: "80"
-        - name: CONEXION_MONGO
-          value: "mongodb://escalar-mongo:27017/visitas"
         command: ["npm"]
         args: ["run", "iniciar"]
         ports:

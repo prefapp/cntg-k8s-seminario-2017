@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: escalar-servicio
+  labels:
+    app: escalar
+spec:
+  selector:
+    app: escalar
+  ports:
+  - protocol: TCP
+    targetPort: 80
+    port: 80
+  type: NodePort

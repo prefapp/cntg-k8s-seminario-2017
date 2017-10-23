@@ -9,3 +9,11 @@ kubectl delete -f dev.yml
 
 # establecer un default ns 
 kubectl config set-context minikube --namespace dev
+
+
+# ejemplo 1
+# crear un despliegue de la app 
+kubectl apply -f escalar/despliegue.yml 
+
+# crear un servicio
+kubectl apply -f escalar/servicio.yml

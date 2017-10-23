@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: escalar-canary
+  labels:
+    app: escalar
+    track: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: escalar
+  template:
+    metadata:
+      labels:
+        app: escalar
+    spec:
+      containers:
+      - name: escalar
+        image: frmadem/catro-eixos-k8s-ej1:v2
+        imagePullPolicy: Always
+        env:
+        - name: PUERTO_APP
+          value: "80"
+        command: ["npm"]
+        args: ["run", "iniciar"]
+        ports:
+        - name: http
+          containerPort: 80
+

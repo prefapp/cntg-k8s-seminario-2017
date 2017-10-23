@@ -1,0 +1,11 @@
+# creacion de un namespace
+kubectl apply -f dev.yml 
+
+# listado de namespaces
+kubectl get ns
+
+# borrado de un namespace
+kubectl delete -f dev.yml
+
+# establecer un default ns 
+kubectl config set-context minikube --namespace dev

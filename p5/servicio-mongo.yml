@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: escalar-mongo
+  labels:
+    app: escalar-mongo
+spec:
+  selector:
+    app: escalar-mongo
+  ports:
+  - protocol: TCP
+    targetPort: mongo
+    port: 27017

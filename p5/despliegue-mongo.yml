@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: escalar-mongo
+  labels:
+    app: escalar-mongo
+    track: stable
+    ejemplo: escalar-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: escalar-mongo
+  template:
+    metadata:
+      labels:
+        app: escalar-mongo
+        ejemplo: escalar-mongo
+    spec:
+      containers:
+      - name: escalar-mongo
+        image: mongo
+        imagePullPolicy: Always
+        ports:
+        - name: mongo
+          containerPort: 27017
+

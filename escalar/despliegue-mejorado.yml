@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: escalar
+  labels:
+    app: escalar
+    track: stable
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: escalar
+  template:
+    metadata:
+      labels:
+        app: escalar
+        ejemplo: escalar
+    spec:
+      containers:
+      - name: escalar
+        image: frmadem/catro-eixos-k8s-ej1:v2
+        imagePullPolicy: Always
+        env:
+        - name: PUERTO_APP
+          value: "80"
+
+        command: ["npm"]
+
+        args: ["run", "iniciar"]
+
+        ports:
+        - name: http
+          containerPort: 80
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 2
+          timeoutSeconds: 1

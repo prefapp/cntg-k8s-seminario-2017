@@ -1,0 +1,48 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mi-mysql
+spec:
+  selector:
+    matchLabels:
+      app: mi-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mi-mysql
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: mi-mysql
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mi-mysql
+              key: MYSQL_USER
+
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mi-mysql
+              key: MYSQL_DATABASE
+
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mi-mysql
+              key: mysql_password
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mi-mysql
+              key: mysql_root_password
+        ports:
+        - name: mysql
+
+        ports:
+        - containerPort: 3306
+          name: mysql
+
